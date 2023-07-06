@@ -1,0 +1,19 @@
+html {
+  min-height: 100%;
+  position: relative;
+}
+body {
+  margin: 0;
+  margin-bottom: 40px;
+  background-color: rgb(255, 255, 255);
+  color: black;
+  font-size: 20px;
+  text-align: center;
+  font-family: sans-serif;
+}
+footer {
+  position: fixed;
+  left: 0px;
+  bottom: 0px;
+  width: 100%;
+}
