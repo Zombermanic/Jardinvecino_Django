@@ -44,42 +44,41 @@
       </div>
     </nav>
   </div>
+  <br>
   <h3>
-    Bienvenido a nuestro sitio de Socios, Inicia sesión para continuar
+    Bienvenido a nuestro sitio de Socios
   </h3>
-
   <!--espacio de pruebas-->
+  <div class="container">
+    <div class='row'>
+        <div class='col-lg-6 text-center mx-auto fw-bolder p-5'>
+            <h1>Inicio de Secion</h1>
 
-  <div class="col-md-5 mx-auto ">
-    <form>
-      <div class="row mb-2">
-        <label for="inputEmail3" class="col-sm-2 col-form-label">Correo
-          Electrónico</label>
-        <div class="col-sm-11">
-          <input type="email" class="form-control" id="inputEmail3">
+            <form action="" method='POST'>
+                {% csrf_token %}
+                    <class='img-thumbnail w-50 h-50 rounded-circle mb-3'><br>
+                <label for="username" class='form-label'>Correo electronico</label>
+                <input type="text" class='form-control' name='username' id='username'
+                    placeholder='Ingrese su usuario'><br>
+                <label for="password" class='form-label'>Contraseña</label>
+                <input type="password" class='form-control' name='password' id='password'
+                    placeholder='Ingrese su contraseña'><br>
+                <input type="submit" value='Conectar' class='btn btn-success'>
+            </form>
+            {% if mensaje%}
+            {{mensaje}}
+            {% endif%}
+            <br>
+            <div class="align-items-end">
+              No tienes Cuenta <br>
+              <a href="usuarionuevo.html">
+                <button type="button" class="btn btn-outline-primary ">Crea una cuenta</button>
+              </a>
+            </div>
         </div>
-      </div>
-      <div class="row mb-2">
-        <label for="inputPassword3" class="col-sm-4 col-form-label">Contraseña
-        </label>
-        <div class="col-sm-11">
-          <input type="password" class="form-control" id="inputPassword3">
-        </div>
-      </div>
-      <div class="col-md-20">
-        <div class="d-grid gap-1 ">
-          <a href="socio.html">
-            <button type="button" class="btn btn-outline-primary">Login</button>
-          </a>
-        </div>
-        <div class="align-items-end">
-          No tienes Cuenta <br>
-          <a href="usuarionuevo.html">
-            <button type="button" class="btn btn-outline-primary ">Crea una cuenta</button>
-          </a>
-        </div>
-      </div>
     </div>
+</div>
+
     <footer>
       <div class="row p-0 pb-0 bg-dark text-white ">
         <div class="col-xs-12 col-md-6 col-lg-3">
@@ -104,4 +103,4 @@
       </div>
     </footer>
   </body>
-</html
+</html>

@@ -22,6 +22,7 @@ class Usuario(models.Model):
         unique=True, blank=False, null=False, max_length=100)
     region = models.CharField(max_length=100, blank=True)
     comuna = models.CharField(max_length=100, blank=True)
+    password = models.CharField(max_length=50, blank=False, null=False, default='')
 
     def __str__(self):
         return str(self.nombre)+" "+str(self.appPaterno)+" "+str(self.appMaterno)

@@ -20,4 +20,7 @@ urlpatterns = [
     path("crudTipo", views.crudTipo, name="crudTipo"),
     path("borrar_usuario/ <str:pk>", views.borrar_usuario, name="borrar_usuario"),
     path("editar_usuario/ <str:pk>", views.editar_usuario, name="editar_usuario"),
+    path("actualizarUsuario", views.actualizarUsuario, name="actualizarUsuario"),
+    path("vistaSocio", views.vistaSocio, name="vistaSocio")
+    
 ]

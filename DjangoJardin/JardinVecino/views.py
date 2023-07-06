@@ -1,6 +1,7 @@
 import requests
 import json
-from django.shortcuts import render
+from django.contrib.auth import authenticate, login
+from django.shortcuts import render , redirect
 from .models import Usuario, tipoUsuario
 from .forms import UsuarioForm, tipoForm
 
@@ -37,10 +38,6 @@ def seguimiento(request):
 
     return render(request, "seguimiento.html")
 
-def sesionSocio(request):
-
-    return render(request, "sesionSocio.html")
-
 def pedidos(request):
 
     return render(request, "pedidos.html")
@@ -56,7 +53,27 @@ def sesion(request):
 def socio(request):
     return render(request, "socio.html")
 
+def vistaSocio(request):
+    return render(request, "vistaSocio.html")
+
 #lo que si tiene codigo de mas aqui
+
+def sesionSocio(request):
+    context = {}
+    if request.method != "POST":
+        return render(request, "sesionSocio.html", context)
+    else:
+        username = request.POST["username"]
+        password = request.POST["password"]
+        user = authenticate(request, username=username, password=password)
+        
+        if user is not None:
+            login(request, user)
+            return redirect("vistaSocio") 
+        else:
+            context = {"mensaje": "Usuario y/o Contraseña incorrecta"}
+            return render(request, "sesionSocio.html", context)
+
 def borrar_usuario(request, pk):
     context = {}
     try:
@@ -71,16 +88,15 @@ def borrar_usuario(request, pk):
         context = {"mensaje": "Error, Rut no encontrado...", "usuario": usuarios}
         return render(request, "lista_usuarios.html", context)
 
-def userUpdate(request):
+def actualizarUsuario(request):
     if request.method == "POST":
         rut = request.POST["rut"]
         nombre = request.POST["nombre"]
         appPaterno = request.POST["appPaterno"]
         appMaterno = request.POST["appMaterno"]
-        fecha = request.POST["fecha"]
         tipo = request.POST["tipoUsuario"]
         correo = request.POST["correo"]
-        telefono = request.POST["telefono"]
+        
 
         objTipo = tipoUsuario.objects.get(idTipoUsuario=tipo)
 
@@ -89,11 +105,8 @@ def userUpdate(request):
         user.nombre = nombre
         user.appPaterno = appPaterno
         user.appMaterno = appMaterno
-        user.fechaNacimiento = fecha
         user.tipoUsuario = objTipo
         user.correo = correo
-        user.telefono = telefono
-        user.activo = 1
         user.save()
 
         tipo = tipoUsuario.objects.all()
@@ -106,14 +119,14 @@ def userUpdate(request):
         return render(request, "pages/user_list.html", context)
 
 def editar_usuario(request, pk):
-    if pk != "":
-        user = Usuario.objects.get(rut=pk)
-        tipo = tipoUsuario.objects.all()
-        context = {"usuario": user, "tipo": tipo}
-        return render(request, "lista_usuarios.html", context)
-    else:
+    try:
+        usuario = Usuario.objects.get(rut=pk)
+        tipos = tipoUsuario.objects.all()
+        context = {"usuario": usuario, "tipos": tipos}
+        return render(request, "editar_usuario.html", context)
+    except Usuario.DoesNotExist:
         context = {"mensaje": "Error, usuario no encontrado"}
-        return render(request, "lista_usuarios", context)
+        return render(request, "lista_usuarios.html", context)
 
 def crudTipo(request):
     tipos = tipoUsuario.objects.all()
@@ -153,6 +166,7 @@ def usuarionuevo(request):
         appMaterno = request.POST["appMaterno"]
         tipo = request.POST["tipoUsuario"]
         correo = request.POST["correo"]
+        password = request.POST["password"]
         #region_id = request.POST.get('cboRegiones')
         #comuna_id = request.POST.get('cboComunas')
 
@@ -165,7 +179,8 @@ def usuarionuevo(request):
             appPaterno=appPaterno,
             appMaterno=appMaterno,
             tipoUsuario=objTipo,
-            correo=correo
+            correo=correo,
+            password = password 
         )
 
         # Obtener el nombre de la región utilizando requests
