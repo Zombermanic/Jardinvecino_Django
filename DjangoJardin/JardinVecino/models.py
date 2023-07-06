@@ -11,19 +11,17 @@ class tipoUsuario(models.Model):
 
 
 class Usuario(models.Model):
-    # rut - Nombre - AppPaterno - appMaterno - fecha Nacimiento
-    # tipo - correo - telefono - activo
     rut = models.CharField(max_length=10, primary_key=True)
     nombre = models.CharField(max_length=50, blank=False, null=False)
     appPaterno = models.CharField(max_length=30, blank=False, null=False)
     appMaterno = models.CharField(max_length=30, blank=False, null=False)
-    fechaNacimiento = models.DateField(blank=False, null=False)
     tipoUsuario = models.ForeignKey(
-        'tipoUsuario', on_delete=models.CASCADE, db_column='idTipo')
+        'tipoUsuario', on_delete=models.CASCADE, 
+        db_column='idTipo', default=1)
     correo = models.EmailField(
         unique=True, blank=False, null=False, max_length=100)
-    telefono = models.CharField(max_length=10, blank=False, null=False)
-    activo = models.IntegerField()
+    region = models.CharField(max_length=100, blank=True)
+    comuna = models.CharField(max_length=100, blank=True)
 
     def __str__(self):
         return str(self.nombre)+" "+str(self.appPaterno)+" "+str(self.appMaterno)

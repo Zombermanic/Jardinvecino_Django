@@ -14,7 +14,8 @@
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
       crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="css/style.css">
+      {% load static %}
+      <link rel="stylesheet" href="{% static 'css/style.css' %}">
   </head>
   <body>
     <nav class="navbar navbar-expand-lg bg-warning ">
@@ -44,13 +45,15 @@
         </a>
       </div>
     </nav>
+    
     <!--separacion para las cartas-->
     <div class="container-flud">
       <div class="row row-cols-3 row-cols-md-3 col-6 m-auto g-2">
         <div class="col">
           <div class="card">
-            <img src="imagenes/rastrillo.jpg" class="card-img-top"
-              alt="rastrillo">
+            <!--<img src="imagenes/rastrillo.jpg" class="card-img-top"
+              alt="rastrillo">-->
+            <img src="{% static 'imagenes/rastrillo.jpg' %}" class="card-img-top" alt="rastrillo">
             <div class="card-body">
               <h4 class="card-title">Rastrillos</h4>
               <p class="card-text">Lorem ipsum dolor sit amet, consectetur
@@ -63,7 +66,8 @@
         </div>
         <div class="col">
           <div class="card">
-            <img src="imagenes/pala.jpg" class="card-img-top" alt="pala">
+            
+            <img src="{% static 'imagenes/pala.jpg' %}" class="card-img-top" alt="pala">
             <div class="card-body">
               <h4 class="card-title">Palas</h4>
               <p class="card-text">Nam rhoncus vitae sem lacinia pharetra.
@@ -78,8 +82,7 @@
         </div>
         <div class="col">
           <div class="card">
-            <img src="imagenes/guantes.jpg" class="card-img-top"
-              alt="Guantes">
+            <img src="{% static 'imagenes/guantes.jpg' %}" class="card-img-top" alt="guantes">
             <div class="card-body">
               <h4 class="card-title">Guantes</h4>
               <p class="card-text">Nulla molestie, eros ac cursus congue, quam
@@ -96,8 +99,7 @@
         </div>
         <div class="col">
           <div class="card">
-            <img src="imagenes/flores.jpg" class="card-img-top"
-              alt="Colortes">
+            <img src="{% static 'imagenes/flores.jpg' %}" class="card-img-top" alt="Colortes">
             <div class="card-body">
               <h4 class="card-title">Flores por colores</h4>
               <p class="card-text">Donec accumsan nec arcu non bibendum.
@@ -112,7 +114,7 @@
         </div>
         <div class="col">
           <div class="card">
-            <img src="imagenes/GIRASOL.jpg" class="card-img-top" alt="Semillas">
+            <img src="{% static 'imagenes/GIRASOL.jpg' %}" class="card-img-top" alt="Semillas">
             <div class="card-body">
               <h4 class="card-title">Semillas</h4>
               <p class="card-text">This is a longer card with supporting
@@ -127,7 +129,7 @@
         </div>
         <div class="col">
           <div class="card">
-            <img src="imagenes/inserticida.jpg" class="card-img-top" alt="Insecticisa">
+            <img src="{% static 'imagenes/inserticida.jpg' %}" class="card-img-top" alt="Insecticisa">
             <div class="card-body">
               <h4 class="card-title">Insecticida</h4>
               <p class="card-text">This is a longer card with supporting
@@ -140,22 +142,7 @@
             </div>
           </div>
         </div>
-        <div class="col">
-          <div class="card">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="card-body">
-              <h4 class="card-title">Card title</h4>
-              <p class="card-text">This is a longer card with supporting
-                text
-                below as a natural lead-in to additional content. This
-                content
-                is a little bit longer.</p>
-              <p class="card-text text-danger">Valores variados</p>
-              <a href="#" class="btn btn-primary">Ver opciones</a>
-            </div>
-          </div>
-        </div>
       </div>
-    </div> 
+    </div>
   </body>
 </html>
