@@ -1,23 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp"
-      crossorigin="anonymous"
-    />
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
-      crossorigin="anonymous"
-    ></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-  </head>
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript%}
+
+</head>
 
   <body>
     <nav class="navbar navbar-expand-lg bg-warning">
@@ -50,98 +42,77 @@
         </div>
       </div>
     </nav>
-    <h1>Crear Usuario</h1><br>
-    <form action="userAdd" method="POST">
-        {% csrf_token %}
-    <form class="row g-3" onsubmit="validarFormulario(event)">
-      <div class="col-md-6">
-        <label for="inputEmail4" class="form-label">Email</label>
-        <input type="email" class="form-control" id="inputEmail4" />
-      </div>
-      <div class="col-md-6">
-        <label for="nombre" class="form-label">Nombre</label>
-        <input type="text" name="nombre" id="nombre" class="form-control" />
-      </div>
-      <div class="col-md-6">
-        <label for="appPaterno" class="form-label">Apellido Paterno</label>
-        <input
-          type="text"
-          name="appPaterno"
-          id="appPaterno"
-          class="form-control"
-        />
-      </div>
-      <div class="col-md-6">
-        <label for="appMaterno" class="form-label">Apellido Materno</label>
-        <input
-          type="text"
-          name="appMaterno"
-          id="appMaterno"
-          class="form-control"
-        />
-      </div>
-      <div class="col-md-6">
-        <label for="inputPassword4" class="form-label">Contraseña</label>
-        <input type="password" class="form-control" id="inputPassword4" />
-      </div>
-      <div class="col-12">
-        <label for="inputAddress" class="form-label">Dirección</label>
-        <input type="text" class="form-control" id="inputAddress" />
-      </div>
-      <div class="col-md-6">
-        <label for="rut-input" class="form-label"
-          >Rut sin puntos y con guion</label
-        >
-        <input type="text" class="form-control" id="rut-input" />
-        <span id="rut-error" style="color: red"></span>
-      </div>
-      <div>
-        <label for="cboRegiones">Regiones</label>
-        <select
-          name="cboRegiones"
-          id="cboRegiones"
-          class="form-select mb-3 col-md-4"
-        >
-          <option value="" disable hidden>Seleccione una opción</option>
-        </select>
 
-        <label for="cboComunas">Comunas</label>
-        <select
-          name="cboComunas"
-          id="cboComunas"
-          class="form-select mb-3 col-md-4"
-          disabled
-        >
-          <option value="" disable hidden>Seleccione una opción</option>
-        </select>
-      </div>
-      <div class="col-12">
-        <button type="submit" class="btn btn-primary">Registrarme</button>
-      </div>
-    </form>
-    <footer>
-      <div class="row p-0 pb-0 bg-dark text-white">
-        <div class="col-xs-12 col-md-6 col-lg-3">
-          <p class="h5">Jardineria Vecinal</p>
-        </div>
-        <div class="col-xs-12 col-md-6 col-lg-3">
-          <p class="h5 mb-2">Redes sociales</p>
-          <div class="mb-0">
-            <a class="text-white text-decoration-none" href="">Instagram</a>
+    <!--creacion de usuario-->
+    <div class="container">
+      <div class="row">
+          <div class="col-md-6 mx-auto p-5 text-center">
+              <h1>Agregar Usuario</h1><br>
+              <form action="usuarionuevo.html" method="POST">
+                  {% csrf_token %}
+                  <div>
+                      <label for="rut" class="form-label">Rut</label>
+                      <input type="text" name="rut" id="rut" class="form-control">
+                  </div>
+                  <div>
+                      <label for="nombre" class="form-label">Nombre</label>
+                      <input type="text" name="nombre" id="nombre" class="form-control">
+                  </div>
+                  <div>
+                      <label for="appPaterno" class="form-label">Apellido Paterno</label>
+                      <input type="text" name="appPaterno" id="appPaterno" class="form-control">
+                  </div>
+                  <div>
+                      <label for="appMaterno" class="form-label">Apellido Materno</label>
+                      <input type="text" name="appMaterno" id="appMaterno" class="form-control">
+                  </div>
+                  <div>
+                      <label for="tipoUsuario" class="form-label">Tipo Usuario</label>
+                      <select name="tipoUsuario" id="tipoUsuario" class="form-control">
+                          {% for tipoUser in tipo %}
+                          <option value="{{tipoUser.idTipoUsuario}}">{{tipoUser.tipoUsuario}}</option>
+                          {% endfor%}
+                      </select>
+                  </div>
+                  <div>
+                      <label for="correo" class="form-label">Correo</label>
+                      <input type="email" name="correo" id="correo" class="form-control">
+                  </div>
+                  <div>
+                      <label for="direccion" class="form-label">Direccion</label>
+                      <input type="text" name="direccion" id="direccion" class="form-control">
+                  </div>
+                </div>
+                <label for="cboRegiones">Regiones</label>
+                <select
+                  name="cboRegiones"
+                  id="cboRegiones"
+                  class="form-select mb-3 col-md-4"
+                >
+                  <option value="" disable hidden>Seleccione una opción</option>
+                </select>
+        
+                <label for="cboComunas">Comunas</label>
+                <select
+                  name="cboComunas"
+                  id="cboComunas"
+                  class="form-select mb-3 col-md-4"
+                  disabled
+                >
+                  <option value="" disable hidden>Seleccione una opción</option>
+                </select>
+              </div><br><br>
+                  <input type="submit" name="opcion" value="Agregar" class="btn btn-success">
+                  <a href="{% url 'crud' %}"><button type="button" class="btn btn-secondary">Volver</button></a>
+              </form><br><br>
+              <div id="idMensajes">
+                  {% if mensaje%}
+                  {{mensaje}}
+                  {% endif%}
+              </div>
           </div>
-          <div class="mb-0">
-            <a class="text-white text-decoration-none">Facebook</a>
-          </div>
-          <div class="mb-0">
-            <a class="text-white text-decoration-none">Twitter</a>
-          </div>
-        </div>
-        <div class="col-xs-12 col-md-6 col-lg-6">
-          <p class="h5">Contacto</p>
-          <p>Número:+56 935544987</p>
-        </div>
       </div>
-    </footer>
+    </form> 
   </body>
   <script>
     function validarRut(rut) {

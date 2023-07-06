@@ -15,5 +15,9 @@ urlpatterns = [
     path("PagAdmin.html", views.PagAdmin, name="PagAdmin"),
     path("sesion.html", views.sesion, name="sesion"),
     path("socio.html", views.socio, name="socio"),
-    path("usuarionuevo.html", views.usuarionuevo, name="usuarionuevo")
+    path("usuarionuevo.html", views.usuarionuevo, name="usuarionuevo"),
+    path("crud", views.crud, name="crud"),
+    path("crudTipo", views.crudTipo, name="crudTipo"),
+    path("borrar_usuario/ <str:pk>", views.borrar_usuario, name="borrar_usuario"),
+    path("editar_usuario/ <str:pk>", views.editar_usuario, name="editar_usuario"),
 ]
